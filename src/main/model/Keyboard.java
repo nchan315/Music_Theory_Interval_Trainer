@@ -35,4 +35,6 @@ public class Keyboard {
         }
     }
 
+    public void fullKeyboard() {}
+
 }
