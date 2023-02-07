@@ -14,7 +14,7 @@ public class Interval {
 
     // EFFECTS: returns the distance given the interval name
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
-    private int getDistance(String interval) {
+    public int getDistance(String interval) {
         if (interval == "min2") {
             return 1;
         } else if (interval == "maj2") {
