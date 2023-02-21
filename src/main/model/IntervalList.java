@@ -2,69 +2,68 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
+// a list of intervals to be tested
 public class IntervalList {
-    private List<Interval> intervalList;
+    private List<Interval> intervals;
+    private Scanner scanner;
 
+    // EFFECTS: constructs an empty list of Intervals
     public IntervalList() {
-        intervalList = new ArrayList<>();
+        intervals = new ArrayList<>();
+        scanner = new Scanner(System.in);
     }
 
-    public void addInterval(Interval interval) {
-        intervalList.add(interval);
-    }
+    // MODIFIES: this
+    // EFFECTS: adds interval(s) to the list of intervals
+    public void addIntervals() {
+        boolean run = true;
+        System.out.println("Type \"all\" for all intervals or \"done\" when finished");
 
-    public void removeInterval(Interval interval) {
-        intervalList.remove(interval);
-    }
-
-    public String getCorrectInterval(int note1, int note2) {
-        int dist = note2 - note1;
-        if (dist == 1) {
-            return "min2";
-        } else if (dist == 2) {
-            return "maj2";
-        } else if (dist == 3) {
-            return "min3";
-        } else if (dist == 4) {
-            return "maj3";
-        } else if (dist == 5) {
-            return "p4";
-        } else if (dist == 6) {
-            return "aug4";
-        } else if (dist == 7) {
-            return "p5";
-        } else if (dist == 8) {
-            return "min6";
-        } else if (dist == 9) {
-            return "maj6";
-        } else if (dist == 10) {
-            return "min7";
-        } else if (dist == 11) {
-            return "maj7";
-        } else {
-            return "p8";
+        while (run) {
+            String input = scanner.next();
+            if (input.equals("all")) {
+                addAllIntervals();
+                run = false;
+            } else if (input.equals("done")) {
+                run = false;
+            } else {
+                addInterval(new Interval(input));
+            }
         }
     }
 
-    /*
-    public void addAllIntervals() {
-
-        intervalList.addInterval(new Interval("min2"));
-
-        Interval maj2 = new Interval("maj2");
-        Interval min3 = new Interval("min3");
-        Interval maj3 = new Interval("maj3");
-        Interval p4 = new Interval("p4");
-        Interval aug4 = new Interval("aug4");
-        Interval p5 = new Interval("p5");
-        Interval min6 = new Interval("min6");
-        Interval maj6 = new Interval("maj6");
-        Interval min7 = new Interval("min7");
-        Interval maj7 = new Interval("maj7");
-        Interval p8 = new Interval("p8");
-
-
+    // MODIFIES: this
+    // EFFECTS: adds an interval to the list of intervals
+    protected void addInterval(Interval interval) {
+        intervals.add(interval);
     }
-    */
+
+    // MODIFIES: this
+    // EFFECTS: adds all possible intervals to the list of intervals
+    protected void addAllIntervals() {
+        addInterval(new Interval("min2"));
+        addInterval(new Interval("maj2"));
+        addInterval(new Interval("min3"));
+        addInterval(new Interval("maj3"));
+        addInterval(new Interval("p4"));
+        addInterval(new Interval("aug4"));
+        addInterval(new Interval("p5"));
+        addInterval(new Interval("min6"));
+        addInterval(new Interval("maj6"));
+        addInterval(new Interval("min7"));
+        addInterval(new Interval("maj7"));
+        addInterval(new Interval("p8"));
+    }
+
+    // EFFECTS: returns the length of the interval list
+    public int getLength() {
+        return intervals.size();
+    }
+
+    // EFFECTS: returns true if interval is in the list
+    public boolean inList(Interval interval) {
+        return intervals.contains(interval);
+    }
 }

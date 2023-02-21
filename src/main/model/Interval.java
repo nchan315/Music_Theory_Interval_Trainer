@@ -42,6 +42,35 @@ public class Interval {
         }
     }
 
+    public String getCorrectInterval(int note1, int note2) {
+        int dist = note2 - note1;
+        if (dist == 1) {
+            return "min2";
+        } else if (dist == 2) {
+            return "maj2";
+        } else if (dist == 3) {
+            return "min3";
+        } else if (dist == 4) {
+            return "maj3";
+        } else if (dist == 5) {
+            return "p4";
+        } else if (dist == 6) {
+            return "aug4";
+        } else if (dist == 7) {
+            return "p5";
+        } else if (dist == 8) {
+            return "min6";
+        } else if (dist == 9) {
+            return "maj6";
+        } else if (dist == 10) {
+            return "min7";
+        } else if (dist == 11) {
+            return "maj7";
+        } else {
+            return "p8";
+        }
+    }
+
     // EFFECTS: returns interval name
     public String getIntervalName() {
         return interval;

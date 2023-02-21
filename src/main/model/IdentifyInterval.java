@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 // Activity where given 2 notes, must identity the interval
-public class Activity1 {
+public class IdentifyInterval {
 
     private boolean gameOn;
     private IntervalList intList;
@@ -13,11 +13,11 @@ public class Activity1 {
     Random random = new Random();
     Keyboard kb = new Keyboard();
 
-    public Activity1(IntervalList intList) {
+    public IdentifyInterval(IntervalList intList) {
         gameOn = true;
         this.intList = intList;
     }
-
+    /*
     public void activity1() {
         int note1, note2;
         while (gameOn) {
@@ -25,7 +25,7 @@ public class Activity1 {
             note2 = random.nextInt(13) + note1;
             System.out.println(kb.getNoteName(note1) + " " + kb.getNoteName(note2));
             String guess = scanner.nextLine();
-            String actual = intList.getCorrectInterval(note1, note2);
+            String actual = .getCorrectInterval(note1, note2);
             if (guess.equals(actual)) {
                 System.out.println("Correct");
             } else {
@@ -35,6 +35,7 @@ public class Activity1 {
 
         }
     }
+    */
 
 
 }
