@@ -5,9 +5,6 @@ package model;
 
 public class Keyboard {
 
-    // EFFECTS: creates a keyboard with no constructors
-    public Keyboard() {};
-
     // EFFECTS: returns the note name given an int
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public String getNoteName(int i) {
@@ -40,6 +37,7 @@ public class Keyboard {
     }
 
     // EFFECTS: returns the interval given 2 note integers
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public String getCorrectInterval(int note1, int note2) {
         int dist = note2 - note1;
         if (dist == 1) {

@@ -53,8 +53,11 @@ public class StatsPage {
 
     // EFFECTS: displays the summary stats
     public int displayStats() {
-        //System.out.println("Accuracy: " + (correct / total) * 100 + "%");
-        System.out.println("No summary stats to display yet");
+        if (total == 0) {
+            System.out.println("No summary stats to display yet");
+        } else {
+            System.out.println("Accuracy: " + (correct / total) * 100 + "%");
+        }
         return 0;
     }
 

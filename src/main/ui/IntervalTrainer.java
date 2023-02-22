@@ -31,11 +31,13 @@ public class IntervalTrainer {
             displayMenu();
             String input = scanner.next();
             if (input.equals("i")) {
-                new IdentifyInterval(intervals);
+                new IdentifyInterval(intervals, stats);
             } else if (input.equals("f")) {
-                new FindNote(intervals);
+                new FindNote(intervals, stats);
             } else if (input.equals("s")) {
                 stats.displayStats();
+            } else if (input.equals("quit")) {
+                run = false;
             } else {
                 System.out.println("Invalid input");
             }

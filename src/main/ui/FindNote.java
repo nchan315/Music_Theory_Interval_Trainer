@@ -2,6 +2,7 @@ package ui;
 
 import model.IntervalList;
 import model.Keyboard;
+import model.StatsPage;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -14,11 +15,13 @@ public class FindNote {
 
     private boolean gameOn;
     private IntervalList intervals;
+    private StatsPage stats;
 
     // EFFECTS: creates and runs the note-naming activity with given list of intervals
-    public FindNote(IntervalList intervals) {
+    public FindNote(IntervalList intervals, StatsPage stats) {
         gameOn = true;
         this.intervals = intervals;
+        this.stats = stats;
         runActivity();
     }
 
@@ -40,9 +43,11 @@ public class FindNote {
                 gameOn = false;
             } else if (guess.equals(actual)) {
                 System.out.println("Correct");
+                stats.correctInterval();
             } else {
                 System.out.println("Incorrect");
                 System.out.println("Correct answer: " + actual);
+                stats.incorrectInterval(interval);
             }
         }
     }

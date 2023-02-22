@@ -2,6 +2,7 @@ package ui;
 
 import model.IntervalList;
 import model.Keyboard;
+import model.StatsPage;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -14,11 +15,13 @@ public class IdentifyInterval {
 
     private boolean gameOn;
     private IntervalList intervals;
+    private StatsPage stats;
 
     // EFFECTS: creates and runs the identification activity with given list of intervals
-    public IdentifyInterval(IntervalList intervals) {
+    public IdentifyInterval(IntervalList intervals, StatsPage stats) {
         gameOn = true;
         this.intervals = intervals;
+        this.stats = stats;
         runActivity();
     }
 
@@ -26,7 +29,9 @@ public class IdentifyInterval {
     // MODIFIES: stats page
     // EFFECTS: runs the identification activity and updates stats page
     private void runActivity() {
-        int note1, note2, index;
+        int note1;
+        int note2;
+        int index;
         int bound = intervals.getLength();
         while (gameOn) {
             note1 = random.nextInt(13);
@@ -40,7 +45,9 @@ public class IdentifyInterval {
                 gameOn = false;
             } else if (guess.equals(actual)) {
                 System.out.println("Correct");
+                stats.correctInterval();
             } else {
+                stats.incorrectInterval(actual);
                 System.out.println("Incorrect");
                 System.out.println("Correct answer: " + actual);
             }
