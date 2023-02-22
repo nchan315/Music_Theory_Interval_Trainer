@@ -5,6 +5,10 @@ package model;
 
 public class Keyboard {
 
+    // EFFECTS: creates a keyboard with no constructors
+    public Keyboard() {};
+
+    // EFFECTS: returns the note name given an int
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public String getNoteName(int i) {
         i = i % 12;
@@ -35,6 +39,7 @@ public class Keyboard {
         }
     }
 
+    // EFFECTS: returns the interval given 2 note integers
     public String getCorrectInterval(int note1, int note2) {
         int dist = note2 - note1;
         if (dist == 1) {
@@ -64,6 +69,12 @@ public class Keyboard {
         }
     }
 
-    public void fullKeyboard() {}
-
+    // REQUIRES: note1 >= 0
+    // EFFECTS: returns the next note given bottom note and interval
+    public int getNextNote(int note1, String name) {
+        Interval interval = new Interval(name);
+        int dist = interval.getIntervalDistance();
+        int note2 = note1 + dist;
+        return note2;
+    }
 }

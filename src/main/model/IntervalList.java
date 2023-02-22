@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static javax.swing.UIManager.get;
+
 // a list of intervals to be tested
 public class IntervalList {
     private List<Interval> intervals;
@@ -19,19 +21,29 @@ public class IntervalList {
     // EFFECTS: adds interval(s) to the list of intervals
     public void addIntervals() {
         boolean run = true;
-        System.out.println("Type \"all\" for all intervals or \"done\" when finished");
+        System.out.println("Type \"all\" to add all intervals or \"done\" when finished");
 
         while (run) {
-            String input = scanner.next();
+            String input = scanner.nextLine();
             if (input.equals("all")) {
                 addAllIntervals();
                 run = false;
             } else if (input.equals("done")) {
+                System.out.println(allIntervalNames());
                 run = false;
             } else {
                 addInterval(new Interval(input));
             }
         }
+    }
+
+    // EFFECTS: returns all the intervals in the list
+    protected String allIntervalNames() {
+        String string = "";
+        for (Interval i : intervals) {
+            string = string + i.getIntervalName() + " ";
+        }
+        return string;
     }
 
     // MODIFIES: this
@@ -55,6 +67,20 @@ public class IntervalList {
         addInterval(new Interval("min7"));
         addInterval(new Interval("maj7"));
         addInterval(new Interval("p8"));
+    }
+
+    // REQUIRES: j < intervals.size()
+    // EFFECTS: returns the name of an interval at index j
+    public String getIntervalName(int j) {
+        Interval i = intervals.get(j);
+        return i.getIntervalName();
+    }
+
+    // REQUIRES: j < intervals.size()
+    // EFFECTS: returns the distance of an interval at index j
+    public int getIntervalDist(int j) {
+        Interval i = intervals.get(j);
+        return i.getIntervalDistance();
     }
 
     // EFFECTS: returns the length of the interval list

@@ -45,6 +45,7 @@ public class StatsPage {
 
     // EFFECTS: displays the summary stats
     public void displayStats() {
-        System.out.println("Accuracy: " + (correct / total) * 100 + "%");
+        //System.out.println("Accuracy: " + (correct / total) * 100 + "%");
+        System.out.println("No summary stats to display yet");
     }
 }

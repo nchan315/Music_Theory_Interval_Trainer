@@ -47,6 +47,43 @@ public class IntervalListTest {
     }
 
     @Test
+    public void testGetIntervalDistAll() {
+        intervals.addAllIntervals();
+        assertEquals(1, intervals.getIntervalDist(0));
+        assertEquals(6, intervals.getIntervalDist(5));
+        assertEquals(12, intervals.getIntervalDist(11));
+    }
+
+    @Test
+    public void testAllIntervalNames() {
+        intervals.addInterval(new Interval("maj3"));
+        intervals.addInterval(new Interval("min3"));
+        intervals.addInterval(new Interval("p5"));
+        String s = intervals.allIntervalNames();
+        assertEquals("maj3 min3 p5 ", s);
+    }
+
+    @Test
+    public void testGetIntervalName() {
+        intervals.addInterval(new Interval("maj3"));
+        intervals.addInterval(new Interval("min3"));
+        intervals.addInterval(new Interval("p5"));
+        assertEquals("maj3", intervals.getIntervalName(0));
+        assertEquals("min3", intervals.getIntervalName(1));
+        assertEquals("p5", intervals.getIntervalName(2));
+    }
+
+    @Test
+    public void testGetIntervalDist() {
+        intervals.addInterval(new Interval("maj3"));
+        intervals.addInterval(new Interval("min3"));
+        intervals.addInterval(new Interval("p5"));
+        assertEquals(4, intervals.getIntervalDist(0));
+        assertEquals(3, intervals.getIntervalDist(1));
+        assertEquals(7, intervals.getIntervalDist(2));
+    }
+
+    @Test
     public void testGetLength() {
         intervals.addInterval(new Interval("p5"));
         assertEquals(1, intervals.getLength());

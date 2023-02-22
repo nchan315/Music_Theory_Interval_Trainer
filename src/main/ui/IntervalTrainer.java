@@ -15,6 +15,7 @@ public class IntervalTrainer {
     public IntervalTrainer() {
         stats = new StatsPage();
         intervals = new IntervalList();
+        scanner = new Scanner(System.in);
         runIntervalTrainer();
     }
 
@@ -24,11 +25,24 @@ public class IntervalTrainer {
         System.out.println("Welcome to the Interval Trainer!");
         System.out.println("Add some intervals to be tested:");
         intervals.addIntervals();
+
+        boolean run = true;
+        System.out.println("[i]: Identify intervals\n[f]: Find next note\n[s]: View stats");
+        while (run) {
+            String input = scanner.next();
+            if (input.equals("i")) {
+                new IdentifyInterval(intervals);
+            } else if (input.equals("f")) {
+                new FindNote(intervals);
+            } else if (input.equals("s")) {
+                stats.displayStats();
+            } else {
+                System.out.println("Invalid input");
+            }
+        }
+
+
     }
-
-
-    //System.out.println("[i]: Identify intervals");
-    //System.out.println("[f]: Find next note");
 
 
 }
