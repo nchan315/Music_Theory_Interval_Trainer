@@ -27,8 +27,8 @@ public class IntervalTrainer {
         intervals.addIntervals();
 
         boolean run = true;
-        System.out.println("[i]: Identify intervals\n[f]: Find next note\n[s]: View stats");
         while (run) {
+            displayMenu();
             String input = scanner.next();
             if (input.equals("i")) {
                 new IdentifyInterval(intervals);
@@ -40,8 +40,11 @@ public class IntervalTrainer {
                 System.out.println("Invalid input");
             }
         }
+    }
 
-
+    // EFFECTS: displays the menu options
+    private void displayMenu() {
+        System.out.println("[i]: Identify intervals\n[f]: Find next note\n[s]: View stats");
     }
 
 

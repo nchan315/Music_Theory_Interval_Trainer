@@ -11,8 +11,8 @@ public class StatsPage {
 
     // EFFECTS: Constructor for StatsPage which sets correct, total to 0, and creates a hashmap of all intervals
     public StatsPage() {
-        correct = 1;
-        total = 3;
+        correct = 0;
+        total = 0;
         record = new HashMap<String, Integer>();
         makeFreshRecord();
     }
@@ -34,18 +34,42 @@ public class StatsPage {
         record.put("p8", 0);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds 1 to correct intervals and total number of intervals
+    public void correctInterval() {
+        correct++;
+        total++;
+    }
+
     // REQUIRES: string s is one of the possible intervals
     // MODIFIES: this
     // EFFECTS: adds 1 to the value associated with the interval
-    public void newMistake(String s) {
+    public void incorrectInterval(String s) {
         int value = record.get(s);
         value++;
         record.put(s, value);
+        total++;
     }
 
     // EFFECTS: displays the summary stats
-    public void displayStats() {
+    public int displayStats() {
         //System.out.println("Accuracy: " + (correct / total) * 100 + "%");
         System.out.println("No summary stats to display yet");
+        return 0;
+    }
+
+    // EFFECTS: given an interval name, return the number of times wrong
+    public int getFromRecord(String s) {
+        return record.get(s);
+    }
+
+    // EFFECTS: gets the number of correct
+    public float getCorrect() {
+        return correct;
+    }
+
+    // EFFECTS: gets the total
+    public float getTotal() {
+        return total;
     }
 }

@@ -27,16 +27,18 @@ public class FindNote {
     // EFFECTS: runs the note-naming activity and updates stats page
     public void runActivity() {
         int size = intervals.getLength();
-        while (gameOn) {
+        while (gameOn == true) {
             int note1 = random.nextInt(13);
             int index = random.nextInt(size);
             String interval = intervals.getIntervalName(index);
             System.out.println(kb.getNoteName(note1) + " " + interval);
             int note2 = kb.getNextNote(note1, interval);
 
-            String guess = scanner.nextLine();
+            String guess = scanner.next();
             String actual = kb.getNoteName(note2);
-            if (guess.equals(actual)) {
+            if (guess.compareTo("quit") == 0) {
+                gameOn = false;
+            } else if (guess.equals(actual)) {
                 System.out.println("Correct");
             } else {
                 System.out.println("Incorrect");

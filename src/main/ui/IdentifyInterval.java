@@ -36,7 +36,9 @@ public class IdentifyInterval {
             System.out.println(kb.getNoteName(note1) + " " + kb.getNoteName(note2));
             String guess = scanner.nextLine();
             String actual = kb.getCorrectInterval(note1, note2);
-            if (guess.equals(actual)) {
+            if (guess.compareTo("quit") == 0) {
+                gameOn = false;
+            } else if (guess.equals(actual)) {
                 System.out.println("Correct");
             } else {
                 System.out.println("Incorrect");
