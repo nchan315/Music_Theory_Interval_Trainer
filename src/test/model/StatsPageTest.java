@@ -29,6 +29,7 @@ public class StatsPageTest {
         assertEquals(0, stats.getFromRecord("maj3"));
         assertEquals(0, stats.getFromRecord("p4"));
         assertEquals(0, stats.getFromRecord("aug4"));
+        assertEquals(0, stats.getFromRecord("dim5"));
         assertEquals(0, stats.getFromRecord("p5"));
         assertEquals(0, stats.getFromRecord("min6"));
         assertEquals(0, stats.getFromRecord("maj6"));

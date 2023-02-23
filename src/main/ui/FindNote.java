@@ -30,24 +30,24 @@ public class FindNote {
     // EFFECTS: runs the note-naming activity and updates stats page
     public void runActivity() {
         int size = intervals.getLength();
-        while (gameOn == true) {
-            int note1 = random.nextInt(13);
+        while (gameOn) {
+            int note1Number = random.nextInt(13);
             int index = random.nextInt(size);
-            String interval = intervals.getIntervalName(index);
-            System.out.println(kb.getNoteName(note1) + " " + interval);
-            int note2 = kb.getNextNote(note1, interval);
+            String name = intervals.getAt(index);
+            String note1 = kb.getNoteName(note1Number);
+            String note2 = kb.getNextNote(note1, name);
 
+            System.out.println(note1 + " " + name);
             String guess = scanner.next();
-            String actual = kb.getNoteName(note2);
-            if (guess.compareTo("quit") == 0) {
+            if (guess.compareTo("q") == 0) {
                 gameOn = false;
-            } else if (guess.equals(actual)) {
+            } else if (guess.equals(note2)) {
                 System.out.println("Correct");
                 stats.correctInterval();
             } else {
                 System.out.println("Incorrect");
-                System.out.println("Correct answer: " + actual);
-                stats.incorrectInterval(interval);
+                System.out.println("Correct answer: " + note2);
+                stats.incorrectInterval(name);
             }
         }
     }

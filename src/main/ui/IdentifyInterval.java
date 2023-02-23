@@ -4,6 +4,7 @@ import model.IntervalList;
 import model.Keyboard;
 import model.StatsPage;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -29,28 +30,27 @@ public class IdentifyInterval {
     // MODIFIES: stats page
     // EFFECTS: runs the identification activity and updates stats page
     private void runActivity() {
-        int note1;
-        int note2;
-        int index;
         int bound = intervals.getLength();
         while (gameOn) {
-            note1 = random.nextInt(13);
-            index = random.nextInt(bound);
-            note2 = note1 + intervals.getIntervalDist(index);
+            int note1Number = random.nextInt(13); // picks a random note
+            int index = random.nextInt(bound); // picks a random interval from the list
+            String note1 = kb.getNoteName(note1Number);
+            String name = intervals.getAt(index);
+            String note2 = kb.getNextNote(note1, name);
 
-            System.out.println(kb.getNoteName(note1) + " " + kb.getNoteName(note2));
+            System.out.println(note1 + " " + note2);
             String guess = scanner.nextLine();
-            String actual = kb.getCorrectInterval(note1, note2);
-            if (guess.compareTo("quit") == 0) {
+            if (guess.compareTo("q") == 0) {
                 gameOn = false;
-            } else if (guess.equals(actual)) {
+            } else if (guess.compareTo(name) == 0) {
                 System.out.println("Correct");
                 stats.correctInterval();
             } else {
-                stats.incorrectInterval(actual);
+                stats.incorrectInterval(name);
                 System.out.println("Incorrect");
-                System.out.println("Correct answer: " + actual);
+                System.out.println("Correct answer: " + name);
             }
         }
     }
+
 }

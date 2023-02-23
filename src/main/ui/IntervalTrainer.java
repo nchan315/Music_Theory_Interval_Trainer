@@ -36,7 +36,7 @@ public class IntervalTrainer {
                 new FindNote(intervals, stats);
             } else if (input.equals("s")) {
                 stats.displayStats();
-            } else if (input.equals("quit")) {
+            } else if (input.equals("q")) {
                 run = false;
             } else {
                 System.out.println("Invalid input");
@@ -46,7 +46,7 @@ public class IntervalTrainer {
 
     // EFFECTS: displays the menu options
     private void displayMenu() {
-        System.out.println("[i]: Identify intervals\n[f]: Find next note\n[s]: View stats");
+        System.out.println("[i]: Identify intervals\n[f]: Find next note\n[s]: View stats\n[q]: Quit");
     }
 
 

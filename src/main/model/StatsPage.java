@@ -13,7 +13,7 @@ public class StatsPage {
     public StatsPage() {
         correct = 0;
         total = 0;
-        record = new HashMap<String, Integer>();
+        record = new HashMap<>();
         makeFreshRecord();
     }
 
@@ -26,6 +26,7 @@ public class StatsPage {
         record.put("maj3", 0);
         record.put("p4", 0);
         record.put("aug4", 0);
+        record.put("dim5", 0);
         record.put("p5", 0);
         record.put("min6", 0);
         record.put("maj6", 0);
