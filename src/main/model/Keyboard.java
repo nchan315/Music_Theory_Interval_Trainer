@@ -9,6 +9,7 @@ public class Keyboard {
     protected ArrayList<String[]> intervalRef;
 
     // EFFECTS: constructs a keyboard with all the intervals
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public Keyboard() {
         intervalRef = new ArrayList<>();
         String[] glist = {"Ab", "A", "Bb", "B", "C", "C#", "Db", "D", "Eb", "E", "F", "F#", "G"};
@@ -39,6 +40,7 @@ public class Keyboard {
 
     // REQUIRES: one of the valid interval names
     // EFFECTS: returns the position of the interval in the string array
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public int getIntervalRef(String name) {
         if (name.matches("min2")) {
             return 0;
@@ -71,6 +73,7 @@ public class Keyboard {
 
     // REQUIRES: one of the valid note names
     // EFFECTS: returns the position of the note array in the array of string arrays
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public int getNoteRef(String name) {
         if (name == "G") {
             return 0;
