@@ -18,12 +18,6 @@ public class IntervalListTest {
         assertEquals(0, intervals.getLength());
     }
 
-    /*
-    @Test
-    public void testAddIntervals() {
-        assertEquals(0, intervals.addIntervals());
-    } */
-
     @Test
     public void testAddAllIntervals() {
         intervals.addAllIntervals();

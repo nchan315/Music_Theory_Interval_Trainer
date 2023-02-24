@@ -23,8 +23,9 @@ public class IntervalTrainer {
     // EFFECTS: runs the interval trainer
     private void runIntervalTrainer() {
         System.out.println("Welcome to the Interval Trainer!");
-        System.out.println("Add some intervals to be tested:");
-        intervals.addIntervals();
+        System.out.println("Add some intervals to be tested:\nType \"all\" for all intervals"
+                + " or \"done\" when finished");
+        addIntervals();
 
         boolean run = true;
         while (run) {
@@ -47,6 +48,24 @@ public class IntervalTrainer {
     // EFFECTS: displays the menu options
     private void displayMenu() {
         System.out.println("[i]: Identify intervals\n[f]: Find next note\n[s]: View stats\n[q]: Quit");
+    }
+
+    // MODIFIES: IntervalList
+    // EFFECTS: ui for adding testable intervals
+    private void addIntervals() {
+        Boolean addMore = true;
+        while (addMore) {
+            String toAdd = scanner.next();
+            if (toAdd.equals("all")) {
+                intervals.addAllIntervals();
+                addMore = false;
+            } else if (toAdd.equals("done")) {
+                addMore = false;
+            } else {
+                intervals.addInterval(toAdd);
+            }
+        }
+        System.out.println(intervals.allIntervalNames());
     }
 
 

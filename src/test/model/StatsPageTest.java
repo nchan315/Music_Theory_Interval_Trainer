@@ -45,6 +45,9 @@ public class StatsPageTest {
         stats.correctInterval();
         assertEquals(1, stats.getCorrect());
         assertEquals(1, stats.getTotal());
+        stats.correctInterval();
+        assertEquals(2, stats.getCorrect());
+        assertEquals(2, stats.getTotal());
     }
 
     @Test
@@ -56,6 +59,7 @@ public class StatsPageTest {
         assertEquals(0, stats.getCorrect());
         assertEquals(1, stats.getTotal());
         assertEquals(1, stats.getFromRecord("min2"));
+        assertEquals(0, stats.getFromRecord("maj2"));
     }
 
     @Test

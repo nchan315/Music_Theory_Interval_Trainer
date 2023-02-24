@@ -16,29 +16,8 @@ public class IntervalList {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds interval(s) to the list of intervals
-    public int addIntervals() {
-        boolean run = true;
-        System.out.println("Type \"all\" to add all intervals or \"done\" when finished");
-
-        while (run) {
-            String input = scanner.nextLine();
-            if (input.equals("all")) {
-                addAllIntervals();
-                run = false;
-            } else if (input.equals("done")) {
-                run = false;
-            } else {
-                addInterval(input);
-            }
-            System.out.println(allIntervalNames());
-        }
-        return 0;
-    }
-
-    // MODIFIES: this
     // EFFECTS: adds all possible intervals to the list of intervals
-    protected void addAllIntervals() {
+    public void addAllIntervals() {
         addInterval("min2");
         addInterval("maj2");
         addInterval("min3");
@@ -56,12 +35,12 @@ public class IntervalList {
 
     // MODIFIES: this
     // EFFECTS: adds an interval to the list of intervals
-    protected void addInterval(String interval) {
+    public void addInterval(String interval) {
         intervals.add(interval);
     }
 
     // EFFECTS: returns all the intervals in the list
-    protected String allIntervalNames() {
+    public String allIntervalNames() {
         String string = "";
         for (String i : intervals) {
             string = string + i + " ";
