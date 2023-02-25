@@ -18,6 +18,7 @@ public class IntervalList {
     // MODIFIES: this
     // EFFECTS: adds all possible intervals to the list of intervals
     public void addAllIntervals() {
+        intervals = new ArrayList<>();
         addInterval("min2");
         addInterval("maj2");
         addInterval("min3");
@@ -62,6 +63,15 @@ public class IntervalList {
     // EFFECTS: returns true if interval is in the list
     public boolean inList(String interval) {
         return intervals.contains(interval);
+    }
+
+    // EFFECTS: returns true if string is valid interval
+    public boolean isValid(String interval) {
+        return interval.equals("min2") || interval.equals("maj2") || interval.equals("min3")
+                || interval.equals("maj3") || interval.equals("p4") || interval.equals("aug4")
+                || interval.equals("dim5") || interval.equals("p5") || interval.equals("min6")
+                || interval.equals("maj6") || interval.equals("min7") || interval.equals("maj7")
+                || interval.equals("p8");
     }
 
 }

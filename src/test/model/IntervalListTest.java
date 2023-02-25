@@ -56,7 +56,7 @@ public class IntervalListTest {
     }
 
     @Test
-    public void testAllIntervalName() {
+    public void testAllIntervalNames() {
         intervals.addInterval("min2");
         intervals.addInterval("p4");
         intervals.addInterval("maj6");
@@ -86,6 +86,24 @@ public class IntervalListTest {
         intervals.addInterval("min3");
         assertTrue(intervals.inList("min3"));
         assertFalse(intervals.inList("p8"));
+    }
+
+    @Test
+    public void testIsValid() {
+        assertTrue(intervals.isValid("min2"));
+        assertTrue(intervals.isValid("maj2"));
+        assertTrue(intervals.isValid("min3"));
+        assertTrue(intervals.isValid("maj3"));
+        assertTrue(intervals.isValid("p4"));
+        assertTrue(intervals.isValid("aug4"));
+        assertTrue(intervals.isValid("dim5"));
+        assertTrue(intervals.isValid("p5"));
+        assertTrue(intervals.isValid("min6"));
+        assertTrue(intervals.isValid("maj6"));
+        assertTrue(intervals.isValid("min7"));
+        assertTrue(intervals.isValid("maj7"));
+        assertTrue(intervals.isValid("p8"));
+        assertFalse(intervals.isValid("asdf"));
     }
 
 }

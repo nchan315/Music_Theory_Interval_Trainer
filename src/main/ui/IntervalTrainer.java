@@ -36,7 +36,8 @@ public class IntervalTrainer {
             } else if (input.equals("f")) {
                 new FindNote(intervals, stats);
             } else if (input.equals("s")) {
-                stats.displayStats();
+                String message = stats.displayStats();
+                System.out.println(message);
             } else if (input.equals("q")) {
                 run = false;
             } else {
@@ -50,19 +51,23 @@ public class IntervalTrainer {
         System.out.println("[i]: Identify intervals\n[f]: Find next note\n[s]: View stats\n[q]: Quit");
     }
 
-    // MODIFIES: IntervalList
+    // MODIFIES: this
     // EFFECTS: ui for adding testable intervals
     private void addIntervals() {
         Boolean addMore = true;
         while (addMore) {
-            String toAdd = scanner.next();
+            String toAdd = scanner.nextLine();
             if (toAdd.equals("all")) {
                 intervals.addAllIntervals();
                 addMore = false;
             } else if (toAdd.equals("done")) {
                 addMore = false;
             } else {
-                intervals.addInterval(toAdd);
+                if (intervals.isValid(toAdd)) {
+                    intervals.addInterval(toAdd);
+                } else {
+                    System.out.println("Invalid interval");
+                }
             }
         }
         System.out.println(intervals.allIntervalNames());
