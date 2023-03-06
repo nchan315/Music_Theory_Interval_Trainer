@@ -56,12 +56,30 @@ public class IntervalListTest {
     }
 
     @Test
+    public void testRemoveInterval() {
+        intervals.addAllIntervals();
+        assertEquals(13, intervals.getLength());
+        intervals.removeInterval("min2");
+        assertEquals(12, intervals.getLength());
+        intervals.removeInterval("min2");
+        intervals.removeInterval("maj6");
+        intervals.removeInterval("p8");
+        assertEquals(10, intervals.getLength());
+    }
+
+    @Test
     public void testAllIntervalNames() {
         intervals.addInterval("min2");
         intervals.addInterval("p4");
         intervals.addInterval("maj6");
         String s = intervals.allIntervalNames();
         assertEquals("min2 p4 maj6 ", s);
+    }
+
+    @Test
+    public void testRemoveAllIntervals() {
+        intervals.removeAllIntervals();
+        assertEquals(0, intervals.getLength());
     }
 
     @Test
