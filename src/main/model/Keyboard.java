@@ -19,6 +19,7 @@ public class Keyboard {
 
     // MODIFIES: this
     // EFFECTS: creates all possible intervals in a list
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void makeIntervalRef() {
         intervalRef = new ArrayList<>();
         String[] glist = {"Ab", "A", "Bb", "B", "C", "C#", "Db", "D", "Eb", "E", "F", "F#", "G"};

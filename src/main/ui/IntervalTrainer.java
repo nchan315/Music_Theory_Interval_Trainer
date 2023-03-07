@@ -2,20 +2,30 @@ package ui;
 
 import model.IntervalList;
 import model.StatsPage;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 import java.util.Scanner;
 
+import java.io.FileNotFoundException;
+
 // Interval trainer app main page
 public class IntervalTrainer {
+    private static final String JSON_STORE = "./data/myFile.json";
     private StatsPage stats;
     private IntervalList intervals;
     private Scanner scanner;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
 
     // EFFECTS: creates an interval trainer with empty stats page and empty list of intervals
-    public IntervalTrainer() {
+    public IntervalTrainer() throws FileNotFoundException {
         stats = new StatsPage();
         intervals = new IntervalList();
         scanner = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        //jsonReader = new JsonReader(JSON_STORE);
         runIntervalTrainer();
     }
 
@@ -38,11 +48,25 @@ public class IntervalTrainer {
             } else if (input.equals("s")) {
                 String message = stats.displayStats();
                 System.out.println(message);
+            } else if (input.equals("j")) {
+                saveIntervalTrainer();
             } else if (input.equals("q")) {
                 run = false;
             } else {
                 System.out.println("Invalid input");
             }
+        }
+    }
+
+    // EFFECTS: saves the application's data
+    private void saveIntervalTrainer() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(intervals, stats);
+            jsonWriter.close();
+            System.out.println("Progress saved to JSON");
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
         }
     }
 
@@ -67,7 +91,7 @@ public class IntervalTrainer {
     // EFFECTS: displays the menu options
     private void displayMenu() {
         System.out.println("[a]: Add interval\n[r]: Remove interval\n[i]: Identify intervals\n[f]: Find next note"
-                + "\n[s]: View stats\n[q]: Quit");
+                + "\n[s]: View stats\n[j]: Save progress\n[q]: Quit");
     }
 
     // EFFECTS: displays the error message

@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.HashMap;
 
 public class StatsPage {
@@ -26,15 +29,13 @@ public class StatsPage {
         total++;
     }
 
-    // EFFECTS: displays the summary stats
+    // EFFECTS: returns the summary stats
     public String displayStats() {
-        String message;
         if (total == 0) {
-            message = "No summary stats to display yet";
+            return "No summary stats to display yet";
         } else {
-            message = "Accuracy: " + (correct / total) * 100 + "%";
+            return "Accuracy: " + (correct / total) * 100 + "%";
         }
-        return message;
     }
 
     // EFFECTS: gets the number of correct

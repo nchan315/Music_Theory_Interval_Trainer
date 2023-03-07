@@ -1,11 +1,15 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 // a list of intervals to be tested
-public class IntervalList {
+public class IntervalList implements Writable {
     private List<String> intervals;
     private Scanner scanner;
 
@@ -84,6 +88,23 @@ public class IntervalList {
                 || interval.equals("dim5") || interval.equals("p5") || interval.equals("min6")
                 || interval.equals("maj6") || interval.equals("min7") || interval.equals("maj7")
                 || interval.equals("p8");
+    }
+
+    // EFFECTS: returns the JSONObject representation of IntervalList
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("intervals", intervalsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns intervals in list as JSON array
+    private JSONArray intervalsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (String s : intervals) {
+            jsonArray.put(s);
+        }
+        return jsonArray;
     }
 
 }
