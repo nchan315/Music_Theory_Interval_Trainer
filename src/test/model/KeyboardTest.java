@@ -20,20 +20,58 @@ public class KeyboardTest {
     }
 
     @Test
+    public void testMakeIntervalRef() {
+        assertEquals(12, kb.intervalRef.size());
+    }
+
+    @Test
+    public void testMakeAllNotes() {
+        assertTrue(kb.allNotes.contains("G"));
+        assertTrue(kb.allNotes.contains("G#"));
+        assertTrue(kb.allNotes.contains("A"));
+        assertTrue(kb.allNotes.contains("Bb"));
+        assertTrue(kb.allNotes.contains("B"));
+        assertTrue(kb.allNotes.contains("C"));
+        assertTrue(kb.allNotes.contains("C#"));
+        assertTrue(kb.allNotes.contains("D"));
+        assertTrue(kb.allNotes.contains("Eb"));
+        assertTrue(kb.allNotes.contains("E"));
+        assertTrue(kb.allNotes.contains("F"));
+        assertTrue(kb.allNotes.contains("F#"));
+    }
+
+    @Test
+    public void testMakeAllIntervals() {
+        assertTrue(kb.allIntervals.contains("min2"));
+        assertTrue(kb.allIntervals.contains("maj2"));
+        assertTrue(kb.allIntervals.contains("min3"));
+        assertTrue(kb.allIntervals.contains("maj3"));
+        assertTrue(kb.allIntervals.contains("p4"));
+        assertTrue(kb.allIntervals.contains("aug4"));
+        assertTrue(kb.allIntervals.contains("dim5"));
+        assertTrue(kb.allIntervals.contains("p5"));
+        assertTrue(kb.allIntervals.contains("min6"));
+        assertTrue(kb.allIntervals.contains("maj6"));
+        assertTrue(kb.allIntervals.contains("min7"));
+        assertTrue(kb.allIntervals.contains("maj7"));
+        assertTrue(kb.allIntervals.contains("p8"));
+    }
+
+    @Test
     public void getIntervalRefTest() {
-        assertEquals(0, kb.getIntervalRef("min2"));
-        assertEquals(1, kb.getIntervalRef("maj2"));
-        assertEquals(2, kb.getIntervalRef("min3"));
-        assertEquals(3, kb.getIntervalRef("maj3"));
-        assertEquals(4, kb.getIntervalRef("p4"));
-        assertEquals(5, kb.getIntervalRef("aug4"));
-        assertEquals(6, kb.getIntervalRef("dim5"));
-        assertEquals(7, kb.getIntervalRef("p5"));
-        assertEquals(8, kb.getIntervalRef("min6"));
-        assertEquals(9, kb.getIntervalRef("maj6"));
-        assertEquals(10, kb.getIntervalRef("min7"));
-        assertEquals(11, kb.getIntervalRef("maj7"));
-        assertEquals(12, kb.getIntervalRef("p8"));
+        assertEquals(0, kb.getIntervalRefNum("min2"));
+        assertEquals(1, kb.getIntervalRefNum("maj2"));
+        assertEquals(2, kb.getIntervalRefNum("min3"));
+        assertEquals(3, kb.getIntervalRefNum("maj3"));
+        assertEquals(4, kb.getIntervalRefNum("p4"));
+        assertEquals(5, kb.getIntervalRefNum("aug4"));
+        assertEquals(6, kb.getIntervalRefNum("dim5"));
+        assertEquals(7, kb.getIntervalRefNum("p5"));
+        assertEquals(8, kb.getIntervalRefNum("min6"));
+        assertEquals(9, kb.getIntervalRefNum("maj6"));
+        assertEquals(10, kb.getIntervalRefNum("min7"));
+        assertEquals(11, kb.getIntervalRefNum("maj7"));
+        assertEquals(12, kb.getIntervalRefNum("p8"));
     }
 
     @Test
