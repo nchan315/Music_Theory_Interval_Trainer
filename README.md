@@ -24,5 +24,7 @@ As a user, I want to be able to:
  - create a custom playlist of intervals I want to work on
  - identify intervals given two notes
  - name the next note given the bottom note and interval
- - keep track of how many intervals I have gotten correct
+ - keep track of my accuracy in identifying/finding intervals
+ - save my custom interval playlist and personal statistics (if I choose to)
+ - load my custom interval playlist and personal statistics (if I choose)
  - keep track of which intervals I tend to get wrong
