@@ -40,6 +40,12 @@ public class IntervalList {
         intervals.add(interval);
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes an interval from the list of intervals
+    public void removeInterval(String interval) {
+        intervals.remove(interval);
+    }
+
     // EFFECTS: returns all the intervals in the list
     public String allIntervalNames() {
         String string = "";
@@ -47,6 +53,12 @@ public class IntervalList {
             string = string + i + " ";
         }
         return string;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: removes all intervals in the list
+    public void removeAllIntervals() {
+        intervals = new ArrayList<>();
     }
 
     // REQUIRES: i < intervals.size()
