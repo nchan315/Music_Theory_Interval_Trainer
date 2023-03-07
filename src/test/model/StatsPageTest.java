@@ -22,23 +22,6 @@ public class StatsPageTest {
     }
 
     @Test
-    public void makeFreshRecordTest() {
-        assertEquals(0, stats.getFromRecord("min2"));
-        assertEquals(0, stats.getFromRecord("maj2"));
-        assertEquals(0, stats.getFromRecord("min3"));
-        assertEquals(0, stats.getFromRecord("maj3"));
-        assertEquals(0, stats.getFromRecord("p4"));
-        assertEquals(0, stats.getFromRecord("aug4"));
-        assertEquals(0, stats.getFromRecord("dim5"));
-        assertEquals(0, stats.getFromRecord("p5"));
-        assertEquals(0, stats.getFromRecord("min6"));
-        assertEquals(0, stats.getFromRecord("maj6"));
-        assertEquals(0, stats.getFromRecord("min7"));
-        assertEquals(0, stats.getFromRecord("maj7"));
-        assertEquals(0, stats.getFromRecord("p8"));
-    }
-
-    @Test
     public void correctIntervalTest() {
         assertEquals(0, stats.getCorrect());
         assertEquals(0, stats.getTotal());
@@ -54,12 +37,9 @@ public class StatsPageTest {
     public void incorrectIntervalTest() {
         assertEquals(0, stats.getCorrect());
         assertEquals(0, stats.getTotal());
-        assertEquals(0, stats.getFromRecord("min2"));
         stats.incorrectInterval("min2");
         assertEquals(0, stats.getCorrect());
         assertEquals(1, stats.getTotal());
-        assertEquals(1, stats.getFromRecord("min2"));
-        assertEquals(0, stats.getFromRecord("maj2"));
     }
 
     @Test
@@ -67,12 +47,6 @@ public class StatsPageTest {
         assertEquals("No summary stats to display yet", stats.displayStats());
         stats.correctInterval();
         assertEquals("Accuracy: 100.0%", stats.displayStats());
-    }
-
-    @Test
-    public void getFromRecordTest() {
-        assertEquals(0, stats.getFromRecord("min2"));
-        assertEquals(0, stats.getFromRecord("p8"));
     }
 
     @Test

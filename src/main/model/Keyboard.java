@@ -87,7 +87,7 @@ public class Keyboard {
     // REQUIRES: one of the valid interval names
     // EFFECTS: returns the position of the interval in the string array
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
-    public int getIntervalRefNum(String name) { // TODO:
+    public int getIntervalRefNum(String name) {
         return allIntervals.indexOf(name);
     }
 
@@ -100,7 +100,7 @@ public class Keyboard {
     // EFFECTS: given note and interval name, return the correct note
     public String getNextNote(String note1, String name) {
         int noteRef = getNoteRef(note1);
-        int nameRef = getIntervalRefNum(name); // TODO:
+        int nameRef = getIntervalRefNum(name);
         return intervalRef.get(noteRef)[nameRef];
     }
 

@@ -27,4 +27,3 @@ As a user, I want to be able to:
  - keep track of my accuracy in identifying/finding intervals
  - save my custom interval playlist and personal statistics (if I choose to)
  - load my custom interval playlist and personal statistics (if I choose)
- - keep track of which intervals I tend to get wrong
