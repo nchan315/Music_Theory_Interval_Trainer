@@ -109,6 +109,7 @@ public class IntervalTrainer {
             String remove = scanner.nextLine();
             if (remove.equals("all")) {
                 intervals.removeAllIntervals();
+                removeMore = false;
             } else if (remove.equals("done")) {
                 removeMore = false;
             } else {
