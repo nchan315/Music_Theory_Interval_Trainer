@@ -53,6 +53,8 @@ public class IntervalListTest {
         assertTrue(intervals.inList("min2"));
         assertTrue(intervals.inList("p4"));
         assertTrue(intervals.inList("maj6"));
+        intervals.addInterval("min2");
+        assertEquals(3,intervals.getLength());
     }
 
     @Test
@@ -122,6 +124,29 @@ public class IntervalListTest {
         assertTrue(intervals.isValid("maj7"));
         assertTrue(intervals.isValid("p8"));
         assertFalse(intervals.isValid("asdf"));
+    }
+
+    @Test
+    public void testToStrJson() {
+        assertEquals("{\"itv\":\"min2\"}", intervals.toStrJson("min2").toString());
+    }
+
+    @Test
+    public void testIntervalsToJson() {
+        intervals.addInterval("min2");
+        intervals.addInterval("p4");
+        intervals.addInterval("maj6");
+        assertEquals("[{\"itv\":\"min2\"},{\"itv\":\"p4\"},{\"itv\":\"maj6\"}]",
+                intervals.intervalsToJson().toString());
+    }
+
+    @Test
+    public void testToJson() {
+        intervals.addInterval("min2");
+        intervals.addInterval("p4");
+        intervals.addInterval("maj6");
+        assertEquals("{\"intervals\":[{\"itv\":\"min2\"},{\"itv\":\"p4\"},{\"itv\":\"maj6\"}]}",
+                intervals.toJson().toString());
     }
 
 }

@@ -41,7 +41,9 @@ public class IntervalList implements Writable {
     // MODIFIES: this
     // EFFECTS: adds an interval to the list of intervals
     public void addInterval(String interval) {
-        intervals.add(interval);
+        if (!intervals.contains(interval)) {
+            intervals.add(interval);
+        }
     }
 
     // MODIFIES: this
@@ -99,7 +101,7 @@ public class IntervalList implements Writable {
     }
 
     // EFFECTS: returns intervals in list as JSON array
-    private JSONArray intervalsToJson() {
+    protected JSONArray intervalsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (String s : intervals) {
             jsonArray.put(toStrJson(s));
@@ -108,7 +110,7 @@ public class IntervalList implements Writable {
     }
 
     // EFFECTS: returns string as JSON
-    private JSONObject toStrJson(String s) {
+    protected JSONObject toStrJson(String s) {
         JSONObject json = new JSONObject();
         json.put("itv", s);
         return json;
