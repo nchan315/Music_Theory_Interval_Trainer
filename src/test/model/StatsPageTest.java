@@ -50,6 +50,20 @@ public class StatsPageTest {
     }
 
     @Test
+    public void testSetCorrect() {
+        assertEquals(0, stats.getCorrect());
+        stats.setCorrect(5);
+        assertEquals(5, stats.getCorrect());
+    }
+
+    @Test
+    public void testSetTotal() {
+        assertEquals(0, stats.getTotal());
+        stats.setTotal(6);
+        assertEquals(6, stats.getTotal());
+    }
+
+    @Test
     public void getCorrectTest() {
         assertEquals(0, stats.getCorrect());
     }

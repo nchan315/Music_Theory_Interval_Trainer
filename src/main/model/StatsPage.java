@@ -6,8 +6,8 @@ import persistence.Writable;
 import java.util.HashMap;
 
 public class StatsPage {
-    private float correct;
-    private float total;
+    private int correct;
+    private int total;
 
     // EFFECTS: Constructor for StatsPage which sets correct, total to 0, and creates a hashmap of all intervals
     public StatsPage() {
@@ -34,8 +34,22 @@ public class StatsPage {
         if (total == 0) {
             return "No summary stats to display yet";
         } else {
-            return "Accuracy: " + (correct / total) * 100 + "%";
+            return "Accuracy: " + ((double) correct / (double) total) * 100 + "%";
         }
+    }
+
+    // REQUIRES: correct > 0
+    // MODIFIES: this
+    // EFFECTS: changes the value of correct
+    public void setCorrect(int correct) {
+        this.correct = correct;
+    }
+
+    // REQUIRES: total > 0
+    // MODIFIES: this
+    // EFFECTS: changes the value of total
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     // EFFECTS: gets the number of correct

@@ -5,6 +5,7 @@ import model.StatsPage;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import java.io.FileNotFoundException;
@@ -25,7 +26,7 @@ public class IntervalTrainer {
         intervals = new IntervalList();
         scanner = new Scanner(System.in);
         jsonWriter = new JsonWriter(JSON_STORE);
-        //jsonReader = new JsonReader(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runIntervalTrainer();
     }
 
@@ -50,6 +51,8 @@ public class IntervalTrainer {
                 System.out.println(message);
             } else if (input.equals("j")) {
                 saveIntervalTrainer();
+            } else if (input.equals("l")) {
+                loadIntervalTrainer();
             } else if (input.equals("q")) {
                 run = false;
             } else {
@@ -58,7 +61,7 @@ public class IntervalTrainer {
         }
     }
 
-    // EFFECTS: saves the application's data
+    // EFFECTS: saves the interval trainer's data
     private void saveIntervalTrainer() {
         try {
             jsonWriter.open();
@@ -67,6 +70,18 @@ public class IntervalTrainer {
             System.out.println("Progress saved to JSON");
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads interval trainer from file
+    private void loadIntervalTrainer() {
+        try {
+            stats = jsonReader.readStats();
+            //intervals = jsonReader.readIntervals();
+            System.out.println("Loaded progress from JSON");
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 
@@ -91,7 +106,7 @@ public class IntervalTrainer {
     // EFFECTS: displays the menu options
     private void displayMenu() {
         System.out.println("[a]: Add interval\n[r]: Remove interval\n[i]: Identify intervals\n[f]: Find next note"
-                + "\n[s]: View stats\n[j]: Save progress\n[q]: Quit");
+                + "\n[s]: View stats\n[j]: Save progress\n[l]: Load progress\n[q]: Quit");
     }
 
     // EFFECTS: displays the error message
