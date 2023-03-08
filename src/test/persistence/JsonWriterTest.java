@@ -8,22 +8,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class JsonWriterTest {
-    private IntervalList intervals;
-    private StatsPage stats;
-
-    @BeforeEach
-    void setup() {
-        intervals = new IntervalList();
-        intervals.addInterval("min2");
-        stats = new StatsPage();
-        stats.setCorrect(2);
-        stats.setTotal(3);
-    }
 
     @Test
     void testWriterInvalidFile() {
@@ -39,17 +27,19 @@ public class JsonWriterTest {
     @Test
     void testWriterEmptyWorkroom() {
         try {
-            JsonWriter writer = new JsonWriter("./data/testWriterEmptyWorkroom.json");
+            IntervalList intervals = new IntervalList();
+            StatsPage stats = new StatsPage();
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyFile.json");
             writer.open();
             writer.write(intervals, stats);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterEmptyWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterEmptyFile.json");
             stats = reader.readStats();
-            assertEquals(2, stats.getCorrect());
-            assertEquals(3, stats.getTotal());
+            assertEquals(0, stats.getCorrect());
+            assertEquals(0, stats.getTotal());
             intervals = reader.readIntervals();
-            assertTrue(intervals.inList("min2"));
+            assertFalse(intervals.inList("min2"));
             assertFalse(intervals.inList("maj3"));
         } catch (IOException e) {
             fail("Exception should not have been thrown");
@@ -59,22 +49,24 @@ public class JsonWriterTest {
     @Test
     void testWriterGeneralWorkroom() {
         try {
-            intervals.addInterval("maj3");
-            stats.setTotal(4);
-            JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkroom.json");
+            IntervalList intervals = new IntervalList();
+            intervals.addInterval("min2");
+            StatsPage stats = new StatsPage();
+            stats.setCorrect(2);
+            stats.setTotal(3);
+            JsonWriter writer = new JsonWriter("./data/testWriterGeneralFile.json");
             writer.open();
             writer.write(intervals, stats);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterGeneralWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterGeneralFile.json");
             stats = reader.readStats();
             assertEquals(2, stats.getCorrect());
-            assertEquals(4, stats.getTotal());
+            assertEquals(3, stats.getTotal());
             intervals = reader.readIntervals();
             assertTrue(intervals.inList("min2"));
-            assertTrue(intervals.inList("maj3"));
             assertFalse(intervals.inList("p8"));
-            assertEquals(2, intervals.getLength());
+            assertEquals(1, intervals.getLength());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }

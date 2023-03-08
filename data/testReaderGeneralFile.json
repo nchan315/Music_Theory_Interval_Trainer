@@ -1,0 +1,8 @@
+{
+  "intervals": [
+    {"itv": "min2"},
+    {"itv": "maj3"}
+  ],
+  "Total": 4,
+  "Correct": 2
+}
