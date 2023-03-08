@@ -32,6 +32,7 @@ public class IntervalTrainer {
 
     // MODIFIES: this
     // EFFECTS: runs the interval trainer
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void runIntervalTrainer() {
         System.out.println("Welcome to the Interval Trainer!");
         boolean run = true;
@@ -78,7 +79,7 @@ public class IntervalTrainer {
     private void loadIntervalTrainer() {
         try {
             stats = jsonReader.readStats();
-            //intervals = jsonReader.readIntervals();
+            intervals = jsonReader.readIntervals();
             System.out.println("Loaded progress from JSON");
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);

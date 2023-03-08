@@ -102,9 +102,16 @@ public class IntervalList implements Writable {
     private JSONArray intervalsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (String s : intervals) {
-            jsonArray.put(s);
+            jsonArray.put(toStrJson(s));
         }
         return jsonArray;
+    }
+
+    // EFFECTS: returns string as JSON
+    private JSONObject toStrJson(String s) {
+        JSONObject json = new JSONObject();
+        json.put("itv", s);
+        return json;
     }
 
 }

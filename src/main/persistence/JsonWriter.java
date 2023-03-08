@@ -1,6 +1,7 @@
 // Based on code from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
 package persistence;
+
 import model.IntervalList;
 import model.StatsPage;
 import org.json.JSONObject;
