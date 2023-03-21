@@ -87,7 +87,6 @@ public class Keyboard {
 
     // REQUIRES: one of the valid interval names
     // EFFECTS: returns the position of the interval in the string array
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public int getIntervalRefNum(String name) {
         return allIntervals.indexOf(name);
     }

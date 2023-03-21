@@ -2,10 +2,10 @@ package ui;
 
 import java.io.FileNotFoundException;
 
-public class Main {
+public class MainGUI {
     public static void main(String[] args) {
         try {
-            new IntervalTrainer();
+            new IntervalTrainerGUI();
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
