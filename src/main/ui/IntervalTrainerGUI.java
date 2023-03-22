@@ -132,7 +132,7 @@ public class IntervalTrainerGUI implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if (source == identify) {
-            // do something
+            new IdentifyIntervalGUI(intervals, stats);
         }
     }
 }
