@@ -44,7 +44,7 @@ public class IntervalTrainer {
             } else if (input.equals("r")) {
                 removeIntervals();
             } else if (input.equals("i")) {
-                startIdentifyInteval();
+                startIdentifyInterval();
             } else if (input.equals("f")) {
                 startFindNote();
             } else if (input.equals("s")) {
@@ -87,7 +87,7 @@ public class IntervalTrainer {
     }
 
     // EFFECTS: starts the identification activity if list size > 0
-    private void startIdentifyInteval() {
+    private void startIdentifyInterval() {
         if (intervals.getLength() > 0) {
             new IdentifyInterval(intervals, stats);
         } else {
