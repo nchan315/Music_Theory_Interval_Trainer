@@ -44,6 +44,7 @@ public class IntervalTrainerGUI extends JFrame implements ActionListener {
         makeLabels();
         makePanel();
         addActions();
+        new StartScreenGUI(frame, panel);
     }
 
     // MODIFIES: this
