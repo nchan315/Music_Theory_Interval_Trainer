@@ -8,23 +8,23 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-import java.util.Scanner;
 
 // Activity where given 2 notes, must identity the interval
 public class IdentifyIntervalGUI implements ActionListener {
-    Scanner scanner = new Scanner(System.in);
     Random random = new Random();
     Keyboard kb = new Keyboard();
 
     private boolean gameOn;
     private IntervalList intervals;
     private StatsPage stats;
+    String currentInterval;
 
     private JFrame frame;
     private JPanel oldPanel;
     private JPanel newPanel;
     private JButton back;
     private JLabel label;
+    private JLabel feedback;
     private JTextField textField;
 
     // EFFECTS: creates and runs the identification activity with given list of intervals
@@ -34,8 +34,7 @@ public class IdentifyIntervalGUI implements ActionListener {
 
         //this.intervals = intervals;
         this.intervals = new IntervalList();
-        this.intervals.addInterval("maj3");
-        this.intervals.addInterval("p5");
+        this.intervals.addAllIntervals();
 
         this.stats = stats;
         this.frame = frame;
@@ -43,8 +42,6 @@ public class IdentifyIntervalGUI implements ActionListener {
 
         makeComponents();
         setUp();
-
-        runActivity();
     }
 
     // MODIFIES: this
@@ -56,11 +53,13 @@ public class IdentifyIntervalGUI implements ActionListener {
         back = new JButton("Back");
         back.setBounds(20, 20, 150, 30);
         back.addActionListener(this);
-        label = new JLabel("asdf");
-        label.setBounds(20, 150, 150, 30);
+        label = new JLabel();
+        label.setBounds(20, 60, 150, 90);
         textField = new JTextField();
-        textField.setBounds(20, 200, 150, 30);
+        textField.setBounds(20, 160, 150, 30);
         textField.addActionListener(this);
+        feedback = new JLabel("asdf");
+        feedback.setBounds(20, 200, 150, 30);
     }
 
     // MODIFIES: this
@@ -71,44 +70,57 @@ public class IdentifyIntervalGUI implements ActionListener {
         newPanel.add(back);
         newPanel.add(label);
         newPanel.add(textField);
+        newPanel.add(feedback);
         frame.add(newPanel);
         frame.setVisible(true);
+
+        int note1Number = random.nextInt(13); // picks a random note
+        int index = random.nextInt(intervals.getLength()); // picks a random interval from the list
+        String note1 = kb.getNoteName(note1Number);
+        currentInterval = intervals.getAt(index);
+        String note2 = kb.getNextNote(note1, currentInterval);
+
+        label.setText(note1 + " " + note2);
     }
 
     // MODIFIES: this
     // EFFECTS: controls all the component actions
     @Override
     public void actionPerformed(ActionEvent e) {
-
-    }
-
-    // REQUIRES: intervals.size() > 0
-    // MODIFIES: stats page
-    // EFFECTS: runs the identification activity and updates stats page
-    private void runActivity() {
-        int bound = intervals.getLength();
-        System.out.println(bound);
-        while (gameOn) {
-            int note1Number = random.nextInt(13); // picks a random note
-            int index = random.nextInt(bound); // picks a random interval from the list
-            String note1 = kb.getNoteName(note1Number);
-            String name = intervals.getAt(index);
-            String note2 = kb.getNextNote(note1, name);
-
-            label.setText(note1 + " " + note2);
-//            String guess = scanner.nextLine(); // TODO:
-//            if (guess.compareTo("q") == 0) {
-//                gameOn = false;
-//            } else if (guess.compareTo(name) == 0) {
-//                System.out.println("Correct");
-//                stats.correctInterval();
-//            } else {
-//                stats.incorrectInterval(name);
-//                System.out.println("Incorrect");
-//                System.out.println("Correct answer: " + name);
-//            }
+        Object source = e.getSource();
+        if (source == textField) {
+            String message = e.getActionCommand();
+            System.out.println(message);
+            sendFeedback(message);
+            update();
+        }
+        if (source == back) {
+            // go back
         }
     }
+
+    // MODIFIES: stats
+    // EFFECTS: gives feedback for each guess
+    private void sendFeedback(String message) {
+        if (currentInterval.equals(message)) {
+            stats.correctInterval();
+            feedback.setText("Correct");
+        } else {
+            stats.incorrectInterval(currentInterval);
+            feedback.setText("Incorrect: " + currentInterval);
+        }
+    }
+
+    // EFFECTS: prints the next interval
+    private void update() {
+        int note1Number = random.nextInt(13); // picks a random note
+        int index = random.nextInt(intervals.getLength()); // picks a random interval from the list
+        String note1 = kb.getNoteName(note1Number);
+        currentInterval = intervals.getAt(index);
+        String note2 = kb.getNextNote(note1, currentInterval);
+        label.setText(note1 + " " + note2);
+    }
+
 }
 
 

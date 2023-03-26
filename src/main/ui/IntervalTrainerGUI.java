@@ -45,11 +45,6 @@ public class IntervalTrainerGUI implements ActionListener {
         makeLabels();
         makePanel();
         addActions();
-
-
-
-
-        //runIntervalTrainer();
     }
 
     // MODIFIES: this
