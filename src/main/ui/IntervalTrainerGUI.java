@@ -23,7 +23,6 @@ public class IntervalTrainerGUI extends JFrame implements ActionListener {
     private JFrame frame;
     private JPanel panel;
     private JButton addIntervals;
-    private JButton removeIntervals;
     private JButton save;
     private JButton load;
     private JButton viewStats;
@@ -60,14 +59,12 @@ public class IntervalTrainerGUI extends JFrame implements ActionListener {
     // MODIFIES: this
     // EFFECTS: makes all the buttons
     private void makeButtons() {
-        addIntervals = new JButton("Add Intervals");
+        addIntervals = new JButton("Add/Remove");
         addIntervals.setBounds(20, 20, 150, 30);
-        removeIntervals = new JButton("Remove Intervals");
-        removeIntervals.setBounds(20, 60, 150, 30);
         save =  new JButton("Save");
-        save.setBounds(20, 100, 150, 30);
+        save.setBounds(20, 60, 150, 30);
         load =  new JButton("Load");
-        load.setBounds(20, 140, 150, 30);
+        load.setBounds(20, 100, 150, 30);
 
         viewStats = new JButton("View Stats");
         viewStats.setBounds(200, 20, 150, 30);
@@ -91,7 +88,6 @@ public class IntervalTrainerGUI extends JFrame implements ActionListener {
         panel.setLayout(null);
 
         panel.add(addIntervals);
-        panel.add(removeIntervals);
         panel.add(save);
         panel.add(load);
         panel.add(viewStats);
@@ -107,7 +103,6 @@ public class IntervalTrainerGUI extends JFrame implements ActionListener {
     // EFFECTS: adds an actionListener to each component
     private void addActions() {
         addIntervals.addActionListener(this);
-        removeIntervals.addActionListener(this);
         save.addActionListener(this);
         load.addActionListener(this);
 
@@ -119,7 +114,9 @@ public class IntervalTrainerGUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
-        if (source == save) {
+        if (source == addIntervals) {
+            manageIntervals();
+        } else if (source == save) {
             saveIntervalTrainer();
         } else if (source == load) {
             loadIntervalTrainer();
@@ -130,6 +127,12 @@ public class IntervalTrainerGUI extends JFrame implements ActionListener {
         } else if (source == findNote) {
             startFindNote();
         }
+    }
+
+    // MODIFIES: intervals
+    // EFFECTS: runs GUI for adding/removing intervals
+    private void manageIntervals() {
+        new AddRemoveGUI(frame, panel, intervals, stats);
     }
 
     // EFFECTS: starts the identification activity if list size > 0

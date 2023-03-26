@@ -54,7 +54,7 @@ public class StartScreenGUI implements ActionListener {
         frame.setVisible(true);
     }
 
-    // EFFECTS: goes to menu screen when button pressed
+    // EFFECTS: goes to menu screen when start button pressed
     @Override
     public void actionPerformed(ActionEvent e) {
         frame.getContentPane().remove(newPanel);
