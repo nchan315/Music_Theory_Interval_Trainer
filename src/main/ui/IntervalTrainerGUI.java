@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class IntervalTrainerGUI implements ActionListener {
+public class IntervalTrainerGUI extends JFrame implements ActionListener {
     private static final String JSON_STORE = "./data/myFile.json";
     private StatsPage stats;
     private IntervalList intervals;
@@ -25,11 +25,9 @@ public class IntervalTrainerGUI implements ActionListener {
     private JButton removeIntervals;
     private JButton save;
     private JButton load;
-    private JButton quit;
     private JButton viewStats;
     private JButton identify;
     private JButton findNote;
-    private JButton listen;
     private JLabel mainLabel;
 
     // EFFECTS: creates an interval trainer with empty stats page and empty list of intervals
@@ -51,7 +49,7 @@ public class IntervalTrainerGUI implements ActionListener {
     // EFFECTS: makes the frame
     private void makeFrame() {
         frame = new JFrame();
-        frame.setSize(500, 300);
+        frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Interval Trainer");
         frame.setVisible(true);
@@ -68,8 +66,6 @@ public class IntervalTrainerGUI implements ActionListener {
         save.setBounds(20, 100, 150, 30);
         load =  new JButton("Load");
         load.setBounds(20, 140, 150, 30);
-        quit = new JButton("Quit");
-        quit.setBounds(20, 180, 150, 30);
 
         viewStats = new JButton("View Stats");
         viewStats.setBounds(200, 20, 150, 30);
@@ -77,8 +73,6 @@ public class IntervalTrainerGUI implements ActionListener {
         identify.setBounds(200, 60, 150, 30);
         findNote =  new JButton("Find Note");
         findNote.setBounds(200, 100, 150, 30);
-        listen = new JButton("Listen");
-        listen.setBounds(200, 140, 150, 30);
     }
 
     // MODIFIES: this
@@ -98,14 +92,16 @@ public class IntervalTrainerGUI implements ActionListener {
         panel.add(removeIntervals);
         panel.add(save);
         panel.add(load);
-        panel.add(quit);
         panel.add(viewStats);
         panel.add(identify);
         panel.add(findNote);
-        panel.add(listen);
+        //panel.add(listen);
         panel.add(mainLabel);
 
         frame.add(panel);
+        //panel.setLocation(20, 20);
+        //panel.setVisible(true);
+        frame.setVisible(true);
     }
 
     // MODIFIES: this
@@ -115,12 +111,11 @@ public class IntervalTrainerGUI implements ActionListener {
         removeIntervals.addActionListener(this);
         save.addActionListener(this);
         load.addActionListener(this);
-        quit.addActionListener(this);
 
         viewStats.addActionListener(this);
         identify.addActionListener(this);
         findNote.addActionListener(this);
-        listen.addActionListener(this);
+        //listen.addActionListener(this);
     }
 
     @Override
@@ -128,6 +123,8 @@ public class IntervalTrainerGUI implements ActionListener {
         Object source = e.getSource();
         if (source == identify) {
             new IdentifyIntervalGUI(intervals, stats, frame, panel);
+        } else if (source == findNote) {
+            new FindNoteGUI(intervals, stats, frame, panel);
         }
     }
 }
