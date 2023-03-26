@@ -32,7 +32,7 @@ public class StatsPage {
     // EFFECTS: returns the summary stats
     public String displayStats() {
         if (total == 0) {
-            return "No summary stats to display yet";
+            return "No stats yet";
         } else {
             return "Accuracy: " + ((double) correct / (double) total) * 100 + "%";
         }

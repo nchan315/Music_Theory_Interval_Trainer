@@ -44,7 +44,7 @@ public class StatsPageTest {
 
     @Test
     public void displayStatsTest() {
-        assertEquals("No summary stats to display yet", stats.displayStats());
+        assertEquals("No stats yet", stats.displayStats());
         stats.correctInterval();
         assertEquals("Accuracy: 100.0%", stats.displayStats());
     }

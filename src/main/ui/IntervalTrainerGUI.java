@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class IntervalTrainerGUI extends JFrame implements ActionListener {
@@ -95,12 +96,9 @@ public class IntervalTrainerGUI extends JFrame implements ActionListener {
         panel.add(viewStats);
         panel.add(identify);
         panel.add(findNote);
-        //panel.add(listen);
         panel.add(mainLabel);
 
         frame.add(panel);
-        //panel.setLocation(20, 20);
-        //panel.setVisible(true);
         frame.setVisible(true);
     }
 
@@ -115,16 +113,65 @@ public class IntervalTrainerGUI extends JFrame implements ActionListener {
         viewStats.addActionListener(this);
         identify.addActionListener(this);
         findNote.addActionListener(this);
-        //listen.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
-        if (source == identify) {
-            new IdentifyIntervalGUI(intervals, stats, frame, panel);
+        if (source == save) {
+            saveIntervalTrainer();
+        } else if (source == load) {
+            loadIntervalTrainer();
+        } else if (source == viewStats) {
+            mainLabel.setText(stats.displayStats());
+        } else if (source == identify) {
+            startIdentifyInterval();
         } else if (source == findNote) {
-            new FindNoteGUI(intervals, stats, frame, panel);
+            startFindNote();
         }
     }
+
+    // EFFECTS: starts the identification activity if list size > 0
+    private void startIdentifyInterval() {
+        if (intervals.getLength() >= 0) {
+            new IdentifyIntervalGUI(intervals, stats, frame, panel);
+        } else {
+            mainLabel.setText("Empty intervals");
+        }
+    }
+
+    // EFFECTS: starts the find note activity if list size > 0
+    private void startFindNote() {
+        if (intervals.getLength() >= 0) {
+            new FindNoteGUI(intervals, stats, frame, panel);
+        } else {
+            mainLabel.setText("Empty intervals");
+        }
+    }
+
+    // EFFECTS: saves the interval trainer's data
+    private void saveIntervalTrainer() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(intervals, stats);
+            jsonWriter.close();
+            mainLabel.setText("Progress saved to JSON");
+        } catch (FileNotFoundException e) {
+            mainLabel.setText("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads interval trainer from file
+    private void loadIntervalTrainer() {
+        try {
+            stats = jsonReader.readStats();
+            intervals = jsonReader.readIntervals();
+            mainLabel.setText("Loaded progress from JSON");
+        } catch (IOException e) {
+            mainLabel.setText("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+
 }
