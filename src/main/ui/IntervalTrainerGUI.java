@@ -137,7 +137,7 @@ public class IntervalTrainerGUI extends JFrame implements ActionListener {
 
     // EFFECTS: starts the identification activity if list size > 0
     private void startIdentifyInterval() {
-        if (intervals.getLength() >= 0) {
+        if (intervals.getLength() > 0) {
             new IdentifyIntervalGUI(intervals, stats, frame, panel);
         } else {
             mainLabel.setText("Empty intervals");
@@ -146,7 +146,7 @@ public class IntervalTrainerGUI extends JFrame implements ActionListener {
 
     // EFFECTS: starts the find note activity if list size > 0
     private void startFindNote() {
-        if (intervals.getLength() >= 0) {
+        if (intervals.getLength() > 0) {
             new FindNoteGUI(intervals, stats, frame, panel);
         } else {
             mainLabel.setText("Empty intervals");

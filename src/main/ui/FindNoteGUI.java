@@ -31,9 +31,7 @@ public class FindNoteGUI implements ActionListener {
     // EFFECTS: creates and runs find note activity with given list of intervals
     public FindNoteGUI(IntervalList intervals, StatsPage stats,
                        JFrame frame, JPanel oldPanel) {
-        // this.intervals = intervals;
-        this.intervals = new IntervalList();
-        this.intervals.addAllIntervals();
+        this.intervals = intervals;
 
         this.stats = stats;
         this.frame = frame;

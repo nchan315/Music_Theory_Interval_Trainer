@@ -30,8 +30,10 @@ As a user, I want to be able to:
 
 # Instructions for Grader
 
-- You can generate the first required action related to adding Xs to a Y by...
-- You can generate the second required action related to adding Xs to a Y by...
+- You can generate the first required action related to adding Xs to a Y by typing the interval you want to
+add or remove in the correct box
+- You can generate the second required action related to adding Xs to a Y by pressing the "Add all" or 
+"Remove all" button
 - You can locate my visual component by the loading screen before the menu
 - You can save the state of my application by pressing the "Save" button
 - You can reload the state of my application by pressing the "Load" button

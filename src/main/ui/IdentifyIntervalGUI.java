@@ -30,9 +30,7 @@ public class IdentifyIntervalGUI implements ActionListener {
     public IdentifyIntervalGUI(IntervalList intervals, StatsPage stats,
                                JFrame frame, JPanel oldPanel) {
 
-        //this.intervals = intervals;
-        this.intervals = new IntervalList();
-        this.intervals.addAllIntervals();
+        this.intervals = intervals;
 
         this.stats = stats;
         this.frame = frame;
