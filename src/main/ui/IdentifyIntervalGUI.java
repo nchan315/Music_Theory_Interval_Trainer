@@ -95,7 +95,6 @@ public class IdentifyIntervalGUI implements ActionListener {
             frame.getContentPane().remove(newPanel);
             frame.repaint();
             frame.add(oldPanel);
-            System.out.println("asdf");
         }
     }
 

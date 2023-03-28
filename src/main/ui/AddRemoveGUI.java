@@ -52,7 +52,7 @@ public class AddRemoveGUI implements ActionListener {
         addButton.setBounds(20, 140, 100, 30);
         removeButton = new JButton("Remove all");
         removeButton.setBounds(140, 140, 100, 30);
-        intervalsLabel = new JLabel("asdf");
+        intervalsLabel = new JLabel(intervals.allIntervalNames());
         intervalsLabel.setBounds(20, 180, 400, 30);
         addField = new JTextField();
         addField.setBounds(140, 60, 100, 30);

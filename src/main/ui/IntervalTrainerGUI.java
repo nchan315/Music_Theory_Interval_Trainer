@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+// Main menu GUI for Interval Trainer
 public class IntervalTrainerGUI extends JFrame implements ActionListener {
     private static final String JSON_STORE = "./data/myFile.json";
     private StatsPage stats;
@@ -50,7 +51,7 @@ public class IntervalTrainerGUI extends JFrame implements ActionListener {
     // EFFECTS: makes the frame
     private void makeFrame() {
         frame = new JFrame();
-        frame.setSize(800, 600);
+        frame.setSize(500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Interval Trainer");
         frame.setVisible(true);
@@ -77,8 +78,8 @@ public class IntervalTrainerGUI extends JFrame implements ActionListener {
     // MODIFIES: this
     // EFFECTS: makes all the labels
     private void makeLabels() {
-        mainLabel = new JLabel("Message");
-        mainLabel.setBounds(200, 180, 150, 30);
+        mainLabel = new JLabel("");
+        mainLabel.setBounds(20, 180, 300, 30);
     }
 
     // MODIFIES: this
@@ -111,6 +112,7 @@ public class IntervalTrainerGUI extends JFrame implements ActionListener {
         findNote.addActionListener(this);
     }
 
+    // EFFECTS: handles the button presses
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
@@ -140,7 +142,7 @@ public class IntervalTrainerGUI extends JFrame implements ActionListener {
         if (intervals.getLength() > 0) {
             new IdentifyIntervalGUI(intervals, stats, frame, panel);
         } else {
-            mainLabel.setText("Empty intervals");
+            mainLabel.setText("Empty intervals, add some intervals");
         }
     }
 
@@ -149,10 +151,11 @@ public class IntervalTrainerGUI extends JFrame implements ActionListener {
         if (intervals.getLength() > 0) {
             new FindNoteGUI(intervals, stats, frame, panel);
         } else {
-            mainLabel.setText("Empty intervals");
+            mainLabel.setText("Empty intervals, add some intervals");
         }
     }
 
+    // MODIFIES: this
     // EFFECTS: saves the interval trainer's data
     private void saveIntervalTrainer() {
         try {

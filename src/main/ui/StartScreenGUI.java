@@ -1,6 +1,7 @@
 package ui;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,15 +30,17 @@ public class StartScreenGUI implements ActionListener {
         newPanel.setLayout(null);
         newPanel.setLocation(20, 20);
 
-        label = new JLabel("Interval Trainer");
-        label.setBounds(200, 20, 100, 30);
+        label = new JLabel("Interval Trainer", SwingConstants.CENTER);
+        label.setFont(new Font(label.getFont().getName(), Font.PLAIN, 18));
+        label.setBounds(150, 40, 200, 30);
 
         imageLabel = new JLabel();
         imageLabel.setIcon(new ImageIcon("data/Resized_142109580_MUSIC_TONES_400.jpg"));
-        imageLabel.setBounds(200, 60, 100, 100);
+        // IMAGE FROM https://cliply.co/clip/music-notes/ and resized
+        imageLabel.setBounds(200, 100, 100, 100);
 
         start = new JButton("Start");
-        start.setBounds(200, 200, 100, 30);
+        start.setBounds(200, 250, 100, 30);
         start.addActionListener(this);
     }
 
@@ -46,7 +49,7 @@ public class StartScreenGUI implements ActionListener {
     private void setUp() {
         frame.remove(oldPanel);
 
-        newPanel.add(label);
+        newPanel.add(label, new GridBagConstraints());
         newPanel.add(imageLabel);
         newPanel.add(start);
 
@@ -62,6 +65,4 @@ public class StartScreenGUI implements ActionListener {
         frame.add(oldPanel);
     }
 
-
-    // IMAGE FROM https://cliply.co/clip/music-notes/
 }

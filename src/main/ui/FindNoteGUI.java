@@ -96,7 +96,6 @@ public class FindNoteGUI implements ActionListener {
             frame.getContentPane().remove(newPanel);
             frame.repaint();
             frame.add(oldPanel);
-            System.out.println("asdf");
         }
     }
 
