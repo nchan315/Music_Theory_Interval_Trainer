@@ -88,7 +88,6 @@ public class FindNoteGUI implements ActionListener {
         Object source = e.getSource();
         if (source == textField) {
             String message = e.getActionCommand();
-            System.out.println(message);
             sendFeedback(message);
             update();
         }
@@ -118,7 +117,7 @@ public class FindNoteGUI implements ActionListener {
         String note1 = kb.getNoteName(note1Number);
         currentInterval = intervals.getAt(index);
         currentNote = kb.getNextNote(note1, currentInterval);
-
         label.setText(note1 + " " + currentInterval);
+        textField.setText("");
     }
 }

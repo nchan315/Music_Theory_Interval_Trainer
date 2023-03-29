@@ -87,7 +87,6 @@ public class IdentifyIntervalGUI implements ActionListener {
         Object source = e.getSource();
         if (source == textField) {
             String message = e.getActionCommand();
-            System.out.println(message);
             sendFeedback(message);
             update();
         }
@@ -118,6 +117,7 @@ public class IdentifyIntervalGUI implements ActionListener {
         currentInterval = intervals.getAt(index);
         String note2 = kb.getNextNote(note1, currentInterval);
         label.setText(note1 + " " + note2);
+        textField.setText("");
     }
 
 }
