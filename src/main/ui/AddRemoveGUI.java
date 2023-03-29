@@ -133,5 +133,7 @@ public class AddRemoveGUI implements ActionListener {
     // EFFECTS: updates the list of intervals
     private void updateIntervals() {
         intervalsLabel.setText(intervals.allIntervalNames());
+        addField.setText("");
+        removeField.setText("");
     }
 }
